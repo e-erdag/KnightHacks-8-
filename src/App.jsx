@@ -41,8 +41,8 @@ function App() {
             <div>
               <CodingProblem />
               <CodeArea cards={codeAreaCards} onDropCard={handleDropToCodeArea}/>
-              <SubmitButton/>
             </div>
+            <div className="submit-button"><SubmitButton/></div>
           </div>
         </div>
       </DndProvider>
