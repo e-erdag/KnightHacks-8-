@@ -1,0 +1,123 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+.main-content {
+    z-index: 1;
+    margin-left: 400px;
+    padding: 2rem;
+}
+.code-area {
+    position: fixed;
+    bottom: 30px;
+    right: 80px;
+    z-index: 15;
+    padding: 0.6rem 1.2rem;
+    border-radius: 10px;
+}
+.top-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background-color: #13609a;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* center text horizontally */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 20; /* above the sidebar */
+  }
+
+.title-font {
+    font-family: 'ClashRoyalFont';
+    font-size: 28px;
+    text-align: center;
+}
+.white-text {
+    color: white;
+}
+.gold-text {
+    font-weight: bold;
+    background: linear-gradient(to bottom, #faee07, #e0ad13, #b8700b);
+    background-clip: text; 
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent; 
+    text-shadow:
+        2px 2px 4px rgba(0,0,0,0.4),  
+        0 0 3px rgba(255,255,255,0.2);  
+}
+.background {
+    background-image: url("../assets/ClashRoyalBackground.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    z-index: -1;
+    
+}
+.submit-button {
+    position: fixed;
+    bottom: 30px;
+    right: 80px;
+    z-index: 15;
+    background: linear-gradient(to bottom, #faee07, #e0ad13, #b8700b);
+    border: 2px solid black;
+    color: white;
+    font-weight: bold;
+    font-size: 1.7rem;
+    font-family: 'ClashRoyalFont';
+    padding: 0.6rem 1.2rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.3);
+}
+.submit-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 3px 5px 8px rgba(0, 0, 0, 0.4);
+}
+
+.submit-button:active {
+    transform: translateY(1px);
+    box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.3);
+}
+.app-container {
+    display: flex;
+    height: 100vh;
+    overflow: hidden; /* no scroll */
+  }
+.card-menu {
+    width: 300px;
+    background-color: #13538b;
+    border-right: 1px solid #0c4577;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+    z-index: 10; /* stay above content */
+}
+.code-card {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+@font-face {
+    font-family: 'ClashRoyalFont';
+    font-style: normal;
+    font-weight: normal;
+    src: url("../fonts/YouBlockhead.ttf") format("truetype");
+    
+}
+
+
