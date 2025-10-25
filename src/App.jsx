@@ -11,7 +11,8 @@ function App() {
 
   const [menuCards, setMenuCards] = useState([
     { id: 1, code: "console.log('Hello World');" },
-    { id: 2, code: "function sum(a, b) { return a + b; }" }
+    { id: 2, code: "function sum(a, b) { return a + b; }" },
+    { id: 3, code: "print('HelloWorld')" }
   ])
   const [codeAreaCards, setCodeAreaCards] = useState([])
 

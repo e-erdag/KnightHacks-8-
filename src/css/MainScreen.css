@@ -18,7 +18,7 @@ body {
     border-radius: 10px;
     background-color: #13538b;
     width: 1000px;
-    left: 400px;
+    left: 360px;
     top: 100px;
     border: 2px solid #0c3457;
 
@@ -43,10 +43,13 @@ body {
     border-radius: 10px;
     background-color: #13538b;
     width: 1000px;
-    left: 400px;
+    left: 360px;
     top: 170px;
+    bottom: 100px;
     border: 2px solid #0c3457;
     box-shadow: 3px #0c3457;
+    display: flex;
+    flex-direction: column;
 
     height: auto;
     max-height: 600px;
@@ -112,7 +115,7 @@ body {
 .submit-button {
     position: fixed;
     bottom: 30px;
-    right: 80px;
+    right: 150px;
     z-index: 15;
     background: linear-gradient(to bottom, #faee07, #e0ad13, #b8700b);
     border: 2px solid black;
@@ -153,17 +156,25 @@ body {
     z-index: 10; /* stay above content */
 }
 .code-card {
-    width: 100%;
+    width: 300px;
     margin-bottom: 1rem;
     border-radius: 15px;
     background-color: gray;
     z-index: 11;
+
+    display: inline-block;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    box-sizing: border-box;
+
 }
 .code-card-content {
-    font-size: 20px;
+    font-size: 15px;
     font-style: bold;
     margin: 2px;
     padding: 10px;
+    white-space: pre-wrap;
+    word-break: break-word;
 }
 
 @font-face {
