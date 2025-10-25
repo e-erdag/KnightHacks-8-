@@ -4,8 +4,8 @@
 
 .sidebar {
     position: fixed;
-    right: 0;
-    top: 0;
+    right: -5px;
+    top: -15px;
     height: 97vh;
     display: flex;
     flex-direction: column;
@@ -19,7 +19,7 @@
     position: relative;
     display: flex;
     align-items: flex-end; 
-    height: 80vh;
+    height: 75vh;
     width: 20px;
     background-color: rgba(0, 0, 0, 0.6);
     border: 5px solid black;
@@ -47,18 +47,60 @@
     position: absolute;
     left: 40px;
     font-size: 0.9rem;
-    color: rgb(255, 0, 0);
+    color: rgb(230, 230, 230);
+    text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
+    font-weight: bold;
     font-weight: bold;
     transform: translateY(50%);
 }
 
 .trophy-slider {
+    display: flex;
     position: absolute;
     right: 40px;
+    padding: 5px 10px;
     bottom: var(--height); 
     transform: translateY(50%);
     transition: bottom 0.4s ease;
     font-size: 0.9rem;
-    color: rgb(255, 0, 0);
+    color: rgb(255, 255, 255);
+    text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
     font-weight: bold;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 5px;
+    background-color: rgb(230, 230, 230);
+}
+
+.trophyImage{
+    margin-left: 7px;
+    width: 15px; /* Sets a fixed width */
+    height: 20px
+}
+
+.arena {
+    display: flex;
+    margin-top: 0px;
+    font-size: 1.5rem;
+    color: rgb(230, 230, 230);
+    text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
+    font-weight: bold;
+    /* background-color: #007bff; */
+    justify-content: center;
+}
+
+.arena-border {
+    width: 220px;
+    height: 40px;
+    background-color: rgb(4, 77, 160);
+    clip-path: polygon(10% 0%, 90% 0%, 100% 50%, 90% 100%, 10% 100%, 0% 50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.arena-fill {
+    width: 200px;
+    height: 30px;
+    background-color: #00a6ff;
+    clip-path: inherit;
 }
