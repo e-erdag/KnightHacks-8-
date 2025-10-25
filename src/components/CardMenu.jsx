@@ -1,8 +1,19 @@
+import { useDrop } from "react-dnd"
+import CodeCard from "./CodeCard"
+function CardMenu({cards, onDropCard}) {
+    const[, drop] = useDrop(() => ({
+        accept: "CARD",
+        drop: item => {
+            if(item.origin === "codeArea") onDropCard(item)
+        }
+    }))
 
-function CardMenu({children}) {
     return (
-        <div className="card-menu">
-            {children}
+        <div ref={drop} className="card-menu">
+            {cards.map((card) => (
+                <CodeCard key={card.id} card={card} origin="codeArea" />
+            ))}
+
         </div>
     )
 }

@@ -1,10 +1,21 @@
-function CodeCard({ code }) {
+import { useDrag } from "react-dnd";
+
+function CodeCard({ card, origin }) {
+    const [{isDragging}, drag] = useDrag(() => ({
+        type: "CARD",
+        item: { ...card, origin},
+        collect: monitor => ({
+            isDragging: !!monitor.isDragging()
+        })
+    }))
+
     return (
-        <div className="code-card" draggable="true">
-            <pre className="code-card-content">
-                {code} {/* This allows for our code in the code cards to be dynamic and and we can the ai generated code into here */}
-                Hello
-            </pre>
+        <div 
+            ref={drag}
+            className="code-card" 
+            style={{ opacity: isDragging ? 0.5 : 1 }}
+        >
+            <pre className="code-card-content">{card.code}</pre>
         </div>
     )
 }
