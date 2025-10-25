@@ -2,7 +2,7 @@ import 'dotenv/config'; //getting .env variables
 import express, { response } from 'express';
 import cors from 'cors';
 import { GoogleGenerativeAI } from "@google/generative-ai"; 
-import {saveTrophieAmount, readSavedTrophies} from './supportFuntions.js';
+import {addAndSaveTrophieAmount, readSavedTrophies} from './supportFuntions.js';
 
 const app = express();
 const PORT = 3000;
@@ -39,12 +39,25 @@ app.post('/add_trophies', async (req, res) => {
   const { trophies_to_add } = req.body // key in json must match this (trophies_to_add)
 
   try{
-    await saveTrophieAmount(file_path, trophies_to_add);
+    await addAndSaveTrophieAmount(file_path, trophies_to_add);
     res.json({response: "successfully added new trophies"});
 
   } catch (error) {
     console.error('trophie addition error: ', error);
     res.json({error: "Error - api call to add trophies failed"});
+  }
+
+});
+
+app.post('/read_trophies', async (req, res) => {
+
+  try{
+    const trophies = await readSavedTrophies(file_path);
+    res.json({response: trophies});
+    
+  } catch (error) {
+    console.error('error when fetching saved trophies: ', error);
+    res.json({error: "Error - api call to read saved trophies failed"});
   }
 
 });

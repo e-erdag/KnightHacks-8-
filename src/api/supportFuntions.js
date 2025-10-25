@@ -15,7 +15,7 @@ export async function readSavedTrophies(file_path){
 }
 
 
-export async function saveTrophieAmount(file_path, trophie_amount){
+export async function addAndSaveTrophieAmount(file_path, trophie_amount){
     try{
         trophie_amount = Number(trophie_amount);     
         trophie_amount += await readSavedTrophies(file_path);
