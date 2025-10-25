@@ -6,13 +6,7 @@ function Sidebar() {
     const [arena, setArena] = useState(1);
     const [locked, setLocked] = useState(false);
     const [trophies, setTrophies] = useState(0)
-    
-    const checkpoints = [
-        { percent: 20, trophy: 30 },
-        { percent: 40, trophy: 60 },
-        { percent: 60, trophy: 90 },
-        { percent: 80, trophy: 120 }
-      ];
+    const [checkpointTrophies, setCheckpointTrophies] = useState([30, 60, 90, 120]);
     
 
     useEffect(() => {
@@ -28,8 +22,10 @@ function Sidebar() {
             if (newHeight >= 80) {
                 setHeight(80);
                 setLocked(true);
+
                 setTimeout(() => {
                 setArena(prevArena => prevArena + 0.5);
+                setCheckpointTrophies([30, 60, 90, 120].map(val => trophies + val+30));
                 setHeight(0);
                 setLocked(false);
                 }, 1000); 
@@ -46,25 +42,28 @@ function Sidebar() {
             <div className="sidebar">
                 <div className="rectangle">
                     <div className="bar-progress"/>  
-                    {checkpoints.map((cp, index) => (
+                    {checkpointTrophies.map((trophy, index) => {
+                        const percent = (index + 1) * 20;
+                        return (
                         <React.Fragment key={index}>
-                        <div
+                            <div
                             className="checkpoint"
-                            style={{ bottom: `${(cp.percent / 100) * 80}vh` }}
-                        />
-                        <div
+                            style={{ bottom: `${(percent / 100) * 80}vh` }}
+                            />
+                            <div
                             className="checkpoint-label"
-                            style={{ bottom: `${(cp.percent / 100) * 80 -1}vh` }}
-                        >
-                            {cp.trophy}
-                        </div>
+                            style={{ bottom: `${(percent / 100) * 80}vh` }}
+                            >
+                            {trophy}
+                            </div>
                         </React.Fragment>
-                    ))}
+                        );
+                    })}
+                    <div className='trophy-slider'>{trophies}</div>
                 </div>
                 <button onClick={increaseHeight}>Increase Height</button>
 
             </div>
-            <h4>Trophies: {trophies}</h4>
         </>
     );
 }

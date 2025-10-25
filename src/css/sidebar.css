@@ -42,11 +42,23 @@
     height: 2px;
     background-color: black;
   }
-  
-  .checkpoint-label {
+
+.checkpoint-label {
     position: absolute;
     left: 40px;
     font-size: 0.9rem;
-    color: rgb(255, 255, 255);
+    color: rgb(255, 0, 0);
     font-weight: bold;
-  }
+    transform: translateY(50%);
+}
+
+.trophy-slider {
+    position: absolute;
+    right: 40px;
+    bottom: var(--height); 
+    transform: translateY(50%);
+    transition: bottom 0.4s ease;
+    font-size: 0.9rem;
+    color: rgb(255, 0, 0);
+    font-weight: bold;
+}
