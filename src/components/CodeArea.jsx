@@ -5,7 +5,9 @@ function CodeArea({cards, onDropCard}) {
     const[, drop] = useDrop(() => ({
         accept: "CARD",
         drop: item => {
-            if(item.origin === "menu") onDropCard(item)
+            if(item.origin === "menu") {
+                onDropCard(item)
+            }
         }
     }))
 

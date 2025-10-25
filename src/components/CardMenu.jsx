@@ -11,7 +11,7 @@ function CardMenu({cards, onDropCard}) {
     return (
         <div ref={drop} className="card-menu">
             {cards.map((card) => (
-                <CodeCard key={card.id} card={card} origin="codeArea" />
+                <CodeCard key={card.id} card={card} origin="menu" />
             ))}
 
         </div>
