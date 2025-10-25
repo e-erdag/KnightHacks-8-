@@ -1,9 +1,9 @@
-let arena1Difficulty = "Limit questions to arithmetic and print statements.";
-
 //this function should bve used in componenets when calling the api to generate a question
-function getGeminiPrompt(question_difficulty){
-    
-    
+function getGeminiPrompt(arena_number){
+
+
+    question_difficulty = "Limit questions to arithmetic and print statements.";
+
     
         geminiPrompt = `
         You are a coding question generator. Your task is to create a programming question and a set of code cards that could be used to solve it.
