@@ -2,6 +2,14 @@
     --height: 0vh;
 }
 
+@font-face {
+    font-family: 'ClashRoyalFont';
+    font-style: normal;
+    font-weight: normal;
+    src: url("../fonts/YouBlockhead.ttf") format("truetype");
+    
+}
+
 .sidebar {
     position: fixed;
     right: -5px;
@@ -46,7 +54,8 @@
 .checkpoint-label {
     position: absolute;
     left: 40px;
-    font-size: 0.9rem;
+    font-size: 0.7rem;
+    font-family: "ClashRoyalFont";
     color: rgb(230, 230, 230);
     text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
     font-weight: bold;
@@ -65,7 +74,7 @@
     font-size: 0.9rem;
     color: rgb(255, 255, 255);
     text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
-    font-weight: bold;
+    font-family: "ClashRoyalFont";
     border: 1px solid rgb(0, 0, 0);
     border-radius: 5px;
     background-color: rgb(230, 230, 230);
@@ -79,11 +88,11 @@
 
 .arena {
     display: flex;
-    margin-top: 0px;
-    font-size: 1.5rem;
+    margin-top: 5px;
+    font-size: 1rem;
     color: rgb(230, 230, 230);
     text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
-    font-weight: bold;
+    font-family: "ClashRoyalFont";
     /* background-color: #007bff; */
     justify-content: center;
 }
