@@ -1,0 +1,24 @@
+:root {
+    --width: 0vw;
+  }
+
+.rectangle {
+    display: flex;
+    width: 90vw;
+    height: 20px; 
+    margin: 0 auto;
+    /* background-color: #DBBD0C; */
+    /* background-color: #00a6ff; */
+    background-color: rgba(0, 0, 0, 0.6);
+    border: 5px solid black;
+    border-radius: 20px / 30px;
+
+}
+
+.bar-progress {
+    display: flex;
+    height: 20px;
+    width: var(--width);
+    background-color: #00a6ff;
+    border-radius: 20px / 30px;
+}
