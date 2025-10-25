@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import trophyImage from '../assets/cr_trophy.png';
 import "../css/sidebar.css";
 
 function Sidebar() {
@@ -16,11 +17,11 @@ function Sidebar() {
     const increaseHeight = () => {
         if (locked) return;
         setHeight(prevHeight => {
-            const newHeight = prevHeight + 16;
+            const newHeight = prevHeight + 15;
             setTrophies(prevTrophies => prevTrophies + 15)
     
-            if (newHeight >= 80) {
-                setHeight(80);
+            if (newHeight >= 75) {
+                setHeight(75);
                 setLocked(true);
 
                 setTimeout(() => {
@@ -29,7 +30,7 @@ function Sidebar() {
                 setHeight(0);
                 setLocked(false);
                 }, 1000); 
-                return 80; 
+                return 75; 
             }
             return newHeight;
         });
@@ -38,8 +39,12 @@ function Sidebar() {
 
     return (
         <>
-                <h1 className='arena'>Arena {arena}</h1>
             <div className="sidebar">
+            <div class="arena-border">
+                <div class="arena-fill">
+                    <h1 className='arena'>Arena {arena}</h1>
+                </div>
+            </div>  
                 <div className="rectangle">
                     <div className="bar-progress"/>  
                     {checkpointTrophies.map((trophy, index) => {
@@ -48,18 +53,18 @@ function Sidebar() {
                         <React.Fragment key={index}>
                             <div
                             className="checkpoint"
-                            style={{ bottom: `${(percent / 100) * 80}vh` }}
+                            style={{ bottom: `${(percent / 100) * 75}vh` }}
                             />
                             <div
                             className="checkpoint-label"
-                            style={{ bottom: `${(percent / 100) * 80}vh` }}
+                            style={{ bottom: `${(percent / 100) * 75}vh` }}
                             >
                             {trophy}
                             </div>
                         </React.Fragment>
                         );
                     })}
-                    <div className='trophy-slider'>{trophies}</div>
+                    <div className='trophy-slider'>{trophies}<img className="trophyImage" src={trophyImage} /></div>
                 </div>
                 <button onClick={increaseHeight}>Increase Height</button>
 
