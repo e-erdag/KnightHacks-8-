@@ -1,7 +1,8 @@
 import 'dotenv/config'; //getting .env variables
-import express from 'express';
+import express, { response } from 'express';
 import cors from 'cors';
 import { GoogleGenerativeAI } from "@google/generative-ai"; 
+import {saveTrophieAmount, readSavedTrophies} from './supportFuntions.js';
 
 const app = express();
 const PORT = 3000;
@@ -13,29 +14,39 @@ app.use(express.json());
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash-lite-001' }); 
 
-
-
-//req is the requestion object (getting stuff from client),  res is response object (sending stuff back to client)
-app.post('/api/ask', (req, res) => {
-  const { prompt } = req.body;
-  const fakeResponse = `You asked: ${prompt}`;
-  res.json({ response: fakeResponse });
-});
-
+//file for trophies
+let file_path = "src/api/trophies.txt";
 
 //req is the requestion object (getting stuff from client),  res is response object (sending stuff back to client)
 app.post('/gen_question', async (req, res) => {
+
   const { prompt } = req.body;
 
   try{
     const result = await model.generateContent(prompt); // .generateContent sends prompt to Gemini and waits for response (result contains reponse) 
-    const response = await result.response.text(); //.text() extracts the generated text from the response
-    res.json({response});
+    const aiResponse = await result.response.text(); //.text() extracts the generated text from the response
+    res.json({response: aiResponse});
 
   } catch (error)  {
     console.error('Gemini API error: ', error);
-    res.status(500).json({error: 'Failed to get response from Gemini'});
+    res.status(500).json({error: 'Error - failed to get response from Gemini'});
   }
+});
+
+
+app.post('/add_trophies', async (req, res) => {
+
+  const { trophies_to_add } = req.body // key in json must match this (trophies_to_add)
+
+  try{
+    await saveTrophieAmount(file_path, trophies_to_add);
+    res.json({response: "successfully added new trophies"});
+
+  } catch (error) {
+    console.error('trophie addition error: ', error);
+    res.json({error: "Error - api call to add trophies failed"});
+  }
+
 });
 
 //starting the server
