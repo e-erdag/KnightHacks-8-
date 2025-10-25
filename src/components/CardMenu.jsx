@@ -1,8 +1,8 @@
 
-function CardMenu() {
+function CardMenu({children}) {
     return (
         <div className="card-menu">
-            
+            {children}
         </div>
     )
 }

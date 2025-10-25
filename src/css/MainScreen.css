@@ -2,11 +2,37 @@ body {
     margin: 0;
     padding: 0;
     overflow: hidden;
+    
 }
 .main-content {
     z-index: 1;
     margin-left: 400px;
     padding: 2rem;
+}
+.code-problem {
+    position: fixed;
+    bottom: 30px;
+    right: 80px;
+    z-index: 15;
+    padding: 0.6rem 1.2rem;
+    border-radius: 10px;
+    background-color: #13538b;
+    width: 1000px;
+    left: 400px;
+    top: 100px;
+    border: 2px solid #0c3457;
+
+    height: auto;
+    min-height: 10px;
+    max-height: 40px;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+}
+.code-problem-content {
+    font-family: 'ClashRoyalFont';
+    font-size: 16px;
+    text-align: left;
+    color: white;
 }
 .code-area {
     position: fixed;
@@ -15,6 +41,18 @@ body {
     z-index: 15;
     padding: 0.6rem 1.2rem;
     border-radius: 10px;
+    background-color: #13538b;
+    width: 1000px;
+    left: 400px;
+    top: 170px;
+    border: 2px solid #0c3457;
+    box-shadow: 3px #0c3457;
+
+    height: auto;
+    max-height: 600px;
+    min-height: 100px;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
 }
 .top-bar {
     position: fixed;
@@ -59,7 +97,6 @@ body {
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
-    height: 100vh;
     margin: 0;
     padding: 0;
     z-index: -1;
@@ -95,6 +132,7 @@ body {
     display: flex;
     height: 100vh;
     overflow: hidden; /* no scroll */
+    padding-top: 70px;
   }
 .card-menu {
     width: 300px;
@@ -110,7 +148,16 @@ body {
 .code-card {
     width: 100%;
     margin-bottom: 1rem;
-  }
+    border-radius: 15px;
+    background-color: gray;
+    z-index: 11;
+}
+.code-card-content {
+    font-size: 20px;
+    font-style: bold;
+    margin: 2px;
+    padding: 10px;
+}
 
 @font-face {
     font-family: 'ClashRoyalFont';
