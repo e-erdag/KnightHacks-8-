@@ -39,11 +39,11 @@ function App() {
             <CardMenu cards={menuCards} onDropCard={handleDropToMenu}> </CardMenu>
             <div className="main-content">
             <div>
-              <SubmitButton />
               <CodingProblem />
               <CodeArea cards={codeAreaCards} onDropCard={handleDropToCodeArea}/>
+              <SubmitButton/>
             </div>
-        </div>
+          </div>
         </div>
       </DndProvider>
       <Sidebar />
