@@ -2,7 +2,7 @@ import 'dotenv/config'; //getting .env variables
 import express, { response } from 'express';
 import cors from 'cors';
 import { GoogleGenerativeAI } from "@google/generative-ai"; 
-import {addAndSaveTrophieAmount, readSavedTrophies} from './supportFuntions.js';
+import {addAndSaveTrophieAmount, readSavedTrophies, getQuestionFromResponse} from './supportFuntions.js';
 import { promises as fs } from 'fs';
 
 const app = express();
@@ -39,9 +39,13 @@ app.post('/gen_question', async (req, res) => {
     const aiResponse = await result.response.text(); //.text() extracts the generated text from the response
     res.json({response: aiResponse});
 
+    getQuestionFromResponse(aiResponse);
+
+
   } catch (error)  {
     console.error('Gemini API error: ', error);
     res.status(500).json({error: 'Error - failed to get response from Gemini'});
+    
   }
 });
 
@@ -58,6 +62,7 @@ app.post('/add_trophies', async (req, res) => {
     console.error('trophie addition error: ', error);
     res.json({error: "Error - api call to add trophies failed"});
   }
+
 
 });
 

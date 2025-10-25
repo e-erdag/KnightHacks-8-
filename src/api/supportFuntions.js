@@ -25,3 +25,22 @@ export async function addAndSaveTrophieAmount(file_path, trophie_amount){
         console.error("Error in writing trophie amount to file", error);
     }
 }
+
+export function getQuestionFromResponse(unprocessed_json){
+
+    try{
+        const cleaned_json = unprocessed_json.replace(/```json|```/g, '').trim(); //ragex to remove leading characters from gemini response
+        const data = JSON.parse(cleaned_json);
+        const { id, question, correct_cards, incorrect_cards } = data; 
+        
+        console.log("Question ID:", id);
+        console.log("Question:", question);
+        console.log("Correct cards:", correct_cards);
+        console.log("Incorrect cards:", incorrect_cards);
+
+        return id, question, correct_cards, incorrect_cards;
+    } catch (error) {
+        console.error("Error in getting from AI Response JSON", error);
+    }
+
+}
