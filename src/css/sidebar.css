@@ -1,24 +1,41 @@
 :root {
-    --width: 0vw;
+    --height: 0vh;
   }
 
-.rectangle {
+  .sidebar {
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 97vh;
     display: flex;
-    width: 90vw;
-    height: 20px; 
-    margin: 0 auto;
-    /* background-color: #DBBD0C; */
-    /* background-color: #00a6ff; */
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 10px;
+    gap: 10px;
+  }
+  
+  .rectangle {
+    display: flex;
+    align-items: flex-end; 
+    height: 90vh;
+    width: 20px;
     background-color: rgba(0, 0, 0, 0.6);
     border: 5px solid black;
-    border-radius: 20px / 30px;
-
-}
-
-.bar-progress {
-    display: flex;
-    height: 20px;
-    width: var(--width);
+    border-radius: 30px / 20px;
+    overflow: hidden; 
+  }
+  
+  .bar-progress {
+    width: 100%;
+    height: var(--height);
     background-color: #00a6ff;
-    border-radius: 20px / 30px;
-}
+    border-radius: 30px / 20px;
+    transition: height 0.4s ease; 
+  }
+
+  .arena {
+    display: flex;
+    
+
+  }
