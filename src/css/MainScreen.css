@@ -115,7 +115,7 @@ body {
 .submit-button {
     position: fixed;
     bottom: 30px;
-    right: 150px;
+    right: 250px;
     z-index: 15;
     background: linear-gradient(to bottom, #faee07, #e0ad13, #b8700b);
     border: 2px solid black;
