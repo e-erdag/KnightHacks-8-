@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Sidebar from "./components/sidebar"
 import SubmitButton from './components/SubmitButton'
 import TopBar from './components/TopBar'
 import CodeCard from './components/CodeCard'
@@ -44,6 +45,7 @@ function App() {
         </div>
         </div>
       </DndProvider>
+      <Sidebar />
     </>
 
   )
