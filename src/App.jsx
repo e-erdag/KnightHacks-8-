@@ -1,34 +1,51 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
+import SubmitButton from './components/SubmitButton'
+import TopBar from './components/TopBar'
+import CodeCard from './components/CodeCard'
+import CardMenu from './components/CardMenu'
+import CodeArea from './components/CodeArea'
+import CodingProblem from './components/CodingProblem'
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
 function App() {
-  const [count, setCount] = useState(0)
+
+  const [menuCards, setMenuCards] = useState([
+    { id: 1, code: "console.log('Hello World');" },
+    { id: 2, code: "function sum(a, b) { return a + b; }" }
+  ])
+  const [codeAreaCards, setCodeAreaCards] = useState([])
+
+  const handleDropToCodeArea = (card) => {
+    setMenuCards((prev) => prev.filter((c) => c.id !== card.id));
+    setCodeAreaCards((prev) => [...prev, card]);
+  }
+
+  const handleDropToMenu = (card) => {
+    // move card from code area back to menu
+    setCodeAreaCards((prev) => prev.filter((c) => c.id !== card.id));
+    setMenuCards((prev) => [...prev, card]);
+  };
+
+  //TODO call api to get code card content then add it to the code card content array
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <DndProvider backend={HTML5Backend}>
+        <div className='background'></div>
+        <TopBar />
+        <div className="app-container">
+            <CardMenu cards={menuCards} onDropCard={handleDropToMenu}> </CardMenu>
+            <div className="main-content">
+            <div>
+              <SubmitButton />
+              <CodingProblem />
+              <CodeArea cards={codeAreaCards} onDropCard={handleDropToCodeArea}/>
+            </div>
+        </div>
+        </div>
+      </DndProvider>
     </>
+
   )
 }
 
