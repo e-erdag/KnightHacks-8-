@@ -14,7 +14,8 @@ app.use(express.json());
 
 //initializing gemini model
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash-lite-001' }); 
+//const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash-lite-001' }); 
+const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash-preview-09-2025' }); 
 
 //file for trophies
 let file_path = "src/api/trophies.txt";
