@@ -36,7 +36,7 @@ try{
 //req is the requestion object (getting stuff from client),  res is response object (sending stuff back to client)
 app.post('/gen_question', async (req, res) => {
 
-  prompt_to_send = getGeminiPrompt(trophy_number);
+  let prompt_to_send = getGeminiPrompt(trophy_number);
   // const { prompt } = req.body;
 
   try{

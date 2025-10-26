@@ -1,7 +1,8 @@
 //this function should bve used in componenets when calling the api to generate a question
 export function getGeminiPrompt(trophie_number){
 
-    question_language = "Python";
+    let question_difficulty = "";
+    let question_language = "Python";
 
     if (trophie_number < 150)
         question_difficulty = "Limit questions to arithmetic and print statements.";
@@ -10,7 +11,7 @@ export function getGeminiPrompt(trophie_number){
         question_difficulty = "Limit questions to arithmetic and print statements, as well as if statements and for loops."
 
     
-        geminiPrompt = `
+    let geminiPrompt = `
         You are a coding question generator. Your task is to create a programming question and a set of code cards that could be used to solve it.
 
         Respond ONLY with a single valid JSON object in this format:
@@ -39,5 +40,5 @@ export function getGeminiPrompt(trophie_number){
         Difficulty constraint: ${question_difficulty}
 `
 
-        return geminiPrompt
+    return geminiPrompt
 }
