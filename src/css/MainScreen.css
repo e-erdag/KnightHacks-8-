@@ -13,7 +13,7 @@ body {
   src: url("../fonts/YouBlockhead.ttf") format("truetype");
 }
 
-/* === BACKGROUND === */
+/* Background */
 .background {
   background-image: url("../assets/ClashRoyalBackground.png");
   background-size: cover;
@@ -26,24 +26,11 @@ body {
   z-index: -1;
 }
 
-/* === LAYOUT STRUCTURE === */
 .app-container {
   display: flex;
   height: 100vh;
   overflow: hidden;
-  padding-top: 70px; /* leave room for top bar */
-}
-
-.card-menu {
-  width: 300px;
-  background-color: #13538b;  
-  border-right: 1px solid #0c4577;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 1rem;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
-  z-index: 10;
+  padding-top: 70px; 
 }
 
 .main-content {
@@ -56,7 +43,7 @@ body {
   box-sizing: border-box;
 }
 
-/* === TOP BAR === */
+/* Title Text */
 .top-bar {
   position: fixed;
   top: 0;
@@ -94,7 +81,7 @@ body {
     0 0 3px rgba(255, 255, 255, 0.2);
 }
 
-/* === QUESTION BOX === */
+/* Code question */
 .code-problem {
   z-index: 15;
   padding: 0.6rem 1.2rem;
@@ -114,7 +101,7 @@ body {
   color: white;
 }
 
-/* === CODE AREA === */
+/* Code Area */
 .code-area {
     z-index: 15;
     padding: 0.6rem 1.2rem;
@@ -141,7 +128,19 @@ body {
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
-/* === CODE CARDS === */
+/* Actual Cards */
+.card-menu {
+  width: 300px;
+  background-color: #13538b;  
+  border-right: 1px solid #0c4577;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+}
+
 .code-card {
   width: 300px;
   margin-bottom: 1rem;
@@ -164,7 +163,7 @@ body {
   word-break: break-word;
 }
 
-/* === SUBMIT BUTTON === */
+/* Submit Button */
 .submit-button {
     position: fixed;
     bottom: 30px;
@@ -192,6 +191,6 @@ body {
 }
 .submit-button-container {
     display: flex;
-    justify-content: center; /* center horizontally */
-    margin-top: 1rem; /* space between code area and button */
+    justify-content: center; 
+    margin-top: 1rem; 
   }

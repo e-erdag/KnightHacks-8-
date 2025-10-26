@@ -84,7 +84,7 @@
 
 .trophyImage{
     margin-left: 7px;
-    width: 15px; /* Sets a fixed width */
+    width: 15px; 
     height: 20px
 }
 
@@ -96,7 +96,6 @@
     text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
     font-weight: bold;
     font-family: "ClashRoyalFont";
-    /* background-color: #007bff; */
     justify-content: center;
 }
 

@@ -12,7 +12,7 @@ function CodeCard({ card, origin, index, moveCard }) {
         const hoverIndex = index
 
         if (dragIndex === hoverIndex) return
-       // Get vertical middle of hovered card
+        
         const hoverBoundingRect = ref.current.getBoundingClientRect();
         const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
         const clientOffset = monitor.getClientOffset();
