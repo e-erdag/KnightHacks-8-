@@ -38,9 +38,9 @@ export function getQuestionFromResponse(unprocessed_json){
         console.log("Card Array:", card_array);
         console.log("Correct Order:", correct_order);
 
-        return id, question, card_array, correct_order;
+        return {id, question, card_array, correct_order};
     } catch (error) {
         console.error("Error in getting from AI Response JSON", error);
+        return { id: "0", question: "none", card_array: [], correct_order: [] };
     }
-
 }

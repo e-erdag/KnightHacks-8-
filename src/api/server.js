@@ -49,7 +49,7 @@ console.log("Trophy amount being passed to generate prompt: ", trophy_number);
     const aiResponse = await result.response.text(); //.text() extracts the generated text from the response
     res.json({response: aiResponse});
 
-    getQuestionFromResponse(aiResponse);
+    //getQuestionFromResponse(aiResponse);
 
 
   } catch (error)  {

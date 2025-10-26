@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Sidebar from "./components/sidebar"
 import SubmitButton from './components/SubmitButton'
 import TopBar from './components/TopBar'
@@ -8,15 +8,51 @@ import CodeArea from './components/CodeArea'
 import CodingProblem from './components/CodingProblem'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
+import {getQuestionFromResponse} from './api/supportFunctions.js'
 import React from 'react'
 function App() {
 
-  const [menuCards, setMenuCards] = useState([
-    { id: 1, code: "console.log('Hello World');" },
-    { id: 2, code: "function sum(a, b) { return a + b; }" },
-    { id: 3, code: "print('HelloWorld')" }
-  ])
+  const [questionData, setQuestionData] = useState(null);
+  const [menuCards, setMenuCards] = useState([])
+  const [error, setError] = useState(null);
   const [codeAreaCards, setCodeAreaCards] = useState([])
+
+  const didFetchRef = useRef(false);
+  const callAPI = async() => {
+
+    try {
+      
+      const response = await fetch("http://localhost:3000/gen_question", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+      });
+
+      if (!response.ok) throw new Error("Failed to fetch question.");
+
+      const jsonData = await response.json();
+      const data = getQuestionFromResponse(jsonData.response);
+    
+
+      setQuestionData(data); 
+      setMenuCards(data.card_array);
+      setCodeAreaCards([]);  
+
+    } catch (err) {
+      console.error("Error:", err);
+      setError(err.message);
+    }
+  };
+  
+
+  useEffect(() => {
+    if (didFetchRef.current) return; // skip second call
+    didFetchRef.current = true;
+
+    callAPI();
+  }, []);
+
+  
+  
 
   const codeAreaCardsRef = React.useRef(codeAreaCards);
     React.useEffect(() => {
@@ -57,10 +93,19 @@ function App() {
             <CardMenu cards={menuCards} onDropCard={handleDropToMenu}> </CardMenu>
             <div className="main-content">
             <div>
-              <CodingProblem />
+              <CodingProblem question={questionData}/>
               <CodeArea cards={codeAreaCards} moveCard={moveCard} onDropCard={handleDropToCodeArea}/>
             </div>
-            <div className="submit-button"><SubmitButton/></div>
+            <div className="submit-button">
+              {questionData && ( 
+                <SubmitButton
+                  codeAreaCards={codeAreaCards} 
+                  correctOrder={questionData.correct_order} 
+                  onNextQuestion={callAPI} 
+            
+                />
+              )}
+            </div>
           </div>
         </div>
       </DndProvider>
