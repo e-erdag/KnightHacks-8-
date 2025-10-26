@@ -13,10 +13,12 @@ import Hint from './components/hint.jsx'
 import React from 'react'
 function App() {
 
+  const sidebarRef = useRef(null);
   const [questionData, setQuestionData] = useState(null);
   const [menuCards, setMenuCards] = useState([])
   const [error, setError] = useState(null);
   const [codeAreaCards, setCodeAreaCards] = useState([])
+
 
   const didFetchRef = useRef(false);
   const callAPI = async() => {
@@ -105,14 +107,14 @@ function App() {
                   codeAreaCards={codeAreaCards} 
                   correctOrder={questionData.correct_order} 
                   onNextQuestion={callAPI} 
-            
+                  refreshSidebar={() => sidebarRef.current?.refreshTrophies()}
                 />
               )}
             </div>
           </div>
         </div>
       </DndProvider>
-      <Sidebar />
+      <Sidebar ref={sidebarRef}/>
     </>
 
   )
