@@ -17,8 +17,20 @@ If you are developing a production application, we recommend using TypeScript wi
 
 --
 
-## How to run
+ ## Setup Instructions
 
-- Install Node.js
-```npm install```
-```npm run dev```
+1. Install Node.js
+
+2. Clone the Repository
+```bash
+git clone https://github.com/your-username/KnightHacks-8-.git
+cd KnightHacks-8-
+```
+3. Install Dependencies
+```bash
+npm install
+```
+4. Run the Program
+```bash
+npm run dev
+```
