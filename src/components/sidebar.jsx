@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, forwardRef, useImperativeHandle } from 'react';
 import trophyImage from '../assets/cr_trophy.png';
 import "../css/sidebar.css";
 
-function Sidebar() {
+const Sidebar = forwardRef((props, ref) => {
   const [arena, setArena] = useState(1);
   const [locked, setLocked] = useState(false);
   const [trophies, setTrophies] = useState(0);
@@ -10,8 +10,8 @@ function Sidebar() {
   const [checkpointTrophies, setCheckpointTrophies] = useState([30, 60, 90, 120]);
 
   // Fetch trophies from backend
-  useEffect(() => {
-    async function getTrophies() {
+  
+    const getTrophies = async () => {
       try {
         const response = await fetch("http://localhost:3000/read_trophies", {
           method: "POST",
@@ -33,8 +33,13 @@ function Sidebar() {
       }
     }
 
+  useEffect(() => {
     getTrophies();
   }, []);
+
+  useImperativeHandle(ref, () => ({
+    refreshTrophies: getTrophies
+  }));
 
   // Whenever trophies change, update the visual height
   useEffect(() => {
@@ -67,6 +72,27 @@ function Sidebar() {
       return newTrophies;
     });
   };
+
+  const changeArena = () => {
+    if (locked) return;
+
+    // Check if the current trophies require arena transition
+    if ((trophies - (arena - 1) * 150) / 2 >= 75) {
+      setLocked(true);
+      setTimeout(() => {
+        setArena(prevArena => prevArena + 1);
+        setCheckpointTrophies([30, 60, 90, 120].map(val => trophies + val));
+        setHeight(0);
+        setLocked(false);
+      }, 1000);
+    }
+  };
+
+  // Run changeArena whenever trophies change
+  useEffect(() => {
+    changeArena();
+  }, [trophies]); // dependency array ensures it runs only when trophies update
+
 
   return (
     <>
@@ -106,6 +132,6 @@ function Sidebar() {
       </div>
     </>
   );
-}
+});
 
 export default Sidebar;
