@@ -1,5 +1,5 @@
 import React from "react"
-import clickSoundFile from "../assets/sounds/clickSound.mp3"; // adjust path if needed
+import clickSoundFile from "../assets/sounds/clickSound.mp3"; 
 
 //call api
 //return id question incorrect cards correct cards

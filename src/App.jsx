@@ -30,9 +30,14 @@ function App() {
     setCodeAreaCards(updated)
   }
 
-  const handleDropToCodeArea = (card) => {
+  const handleDropToCodeArea = (card, dropIndex) => {
     setMenuCards((prev) => prev.filter((c) => c.id !== card.id));
-    setCodeAreaCards((prev) => [...prev, card]);
+
+    setCodeAreaCards((prev) => {
+      const updated = [...prev];
+      updated.splice(dropIndex, 0, card); // insert at drop index
+      return updated;
+    });
   }
 
   const handleDropToMenu = (card) => {
