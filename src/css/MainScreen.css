@@ -102,7 +102,7 @@ body {
   background-color: #13538b;
   border: 2px solid #0c3457;
   text-align: left;
-  width: 85%;
+  width: 80.5%;
   overflow-wrap: break-word;
   white-space: pre-wrap;
   margin-bottom: 10px;
@@ -120,12 +120,11 @@ body {
     padding: 0.6rem 1.2rem;
     border-radius: 10px;
     background-color: #13538b;
-    width: 85%;
+    width: 80.5%;
     height: 100%;
     border: 2px solid #0c3457;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* <-- push first content to top, last to bottom */
     flex-grow: 1;
     min-height: 50vh;
     max-height: 70vh;

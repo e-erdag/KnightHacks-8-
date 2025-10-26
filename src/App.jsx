@@ -8,6 +8,7 @@ import CodeArea from './components/CodeArea'
 import CodingProblem from './components/CodingProblem'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
+import React from 'react'
 function App() {
 
   const [menuCards, setMenuCards] = useState([
@@ -16,6 +17,18 @@ function App() {
     { id: 3, code: "print('HelloWorld')" }
   ])
   const [codeAreaCards, setCodeAreaCards] = useState([])
+
+  const codeAreaCardsRef = React.useRef(codeAreaCards);
+    React.useEffect(() => {
+    codeAreaCardsRef.current = codeAreaCards;
+  }, [codeAreaCards]);
+
+  const moveCard = (fromIndex, toIndex) => {
+    const updated = [...codeAreaCardsRef.current]
+    const [moved] = updated.splice(fromIndex, 1)
+    updated.splice(toIndex, 0, moved)
+    setCodeAreaCards(updated)
+  }
 
   const handleDropToCodeArea = (card) => {
     setMenuCards((prev) => prev.filter((c) => c.id !== card.id));
@@ -40,7 +53,7 @@ function App() {
             <div className="main-content">
             <div>
               <CodingProblem />
-              <CodeArea cards={codeAreaCards} onDropCard={handleDropToCodeArea}/>
+              <CodeArea cards={codeAreaCards} moveCard={moveCard} onDropCard={handleDropToCodeArea}/>
             </div>
             <div className="submit-button"><SubmitButton/></div>
           </div>
