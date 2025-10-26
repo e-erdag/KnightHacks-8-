@@ -2,7 +2,7 @@ import 'dotenv/config'; //getting .env variables
 import express, { response } from 'express';
 import cors from 'cors';
 import { GoogleGenerativeAI } from "@google/generative-ai"; 
-import {addAndSaveTrophieAmount, readSavedTrophies, getQuestionFromResponse} from './supportFuntions.js';
+import {addAndSaveTrophieAmount, readSavedTrophies, getQuestionFromResponse} from './supportFunctions.js';
 import { promises as fs } from 'fs';
 
 const app = express();

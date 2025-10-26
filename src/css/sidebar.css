@@ -98,7 +98,7 @@
 }
 
 .arena-border {
-    width: 220px;
+    width: 170px;
     height: 40px;
     background-color: rgb(4, 77, 160);
     clip-path: polygon(10% 0%, 90% 0%, 100% 50%, 90% 100%, 10% 100%, 0% 50%);
@@ -108,7 +108,7 @@
 }
 
 .arena-fill {
-    width: 200px;
+    width: 150px;
     height: 30px;
     background-color: #00a6ff;
     clip-path: inherit;
