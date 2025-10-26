@@ -1,42 +1,46 @@
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 100vw;
-    z-index: 1000;
-  }
-  
-  .box {
-    position: relative;
-    display: flex;
-    align-items: center;
-    height: 64.5vh;
-    width: 64.1vw;
-    margin-top: 33px;
-    margin-left: 128px;
-    background-color: gray;
-    border-radius: 10px;
-  }
-  
-  /* Blue King stays where it is */
-  .blueKingImage {
-    position: absolute;
-    right: -90px; /* Sticks to right edge of gray box */
-    bottom: 0;
-    width: 300px;
-    height: 400px;
-    margin-right: 30px; /* Optional: add spacing from the box edge */
-  }
-  
-  /* Message centered between left edge and Blue King */
-  .message {
-    position: absolute;
-    left: 0;
-    right: 330px; /* width of blue king + margin */
-    text-align: center;
-    font-size: 2rem; /* Large text */
-    font-weight: bold;
-    color: rgb(200, 174, 6);
-  }
-  
+.container { 
+  position: fixed;          
+  top: 0;                    
+  left: 0;                   
+  width: 100vw;              
+  height: 100vh;             
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5); 
+  z-index: 9999;             
+}
+
+.box {
+  position: relative;
+  display: flex;
+  justify-content: center;   
+  align-items: center;       
+  height: 64.5vh;
+  width: 64.1vw;
+  background-color: gray;
+  border-radius: 10px;
+  padding: 20px;
+  overflow: hidden;          
+}
+
+.message {
+  position: relative;
+  z-index: 2;                
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  color: rgb(200, 174, 6);
+}
+
+/* Blue King image stays anchored to bottom-right */
+.blueKingImage {
+  position: absolute;
+  right: 30px;
+  bottom: 0;
+  width: 300px;
+  height: 400px;
+  object-fit: contain;
+  z-index: 1;                 
+  opacity: 0.9;               
+}

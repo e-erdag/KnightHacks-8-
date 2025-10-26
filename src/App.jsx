@@ -11,6 +11,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend'
 import {getQuestionFromResponse} from './api/supportFunctions.js'
 import Hint from './components/hint.jsx'
 import React from 'react'
+import GoodJob from './components/GoodJob.jsx'
 function App() {
 
   const sidebarRef = useRef(null);
@@ -18,6 +19,15 @@ function App() {
   const [menuCards, setMenuCards] = useState([])
   const [error, setError] = useState(null);
   const [codeAreaCards, setCodeAreaCards] = useState([])
+  const [showHint, setShowHint] = useState(false);
+  const [showCorrect, setShowCorrect] = useState(false);
+
+
+  const handleShowHint = () => setShowHint(true)
+  const handleHideHint = () => setShowHint(false)
+
+  const handleShowCorrect = () => setShowCorrect(true)
+  const handleHideCorrect = () => setShowCorrect(false)
 
 
   const didFetchRef = useRef(false);
@@ -87,7 +97,6 @@ function App() {
     setMenuCards((prev) => [...prev, card]);
   };
 
-  //TODO call api to get code card content then add it to the code card content array
 
   return (
     <>
@@ -108,6 +117,8 @@ function App() {
                   correctOrder={questionData.correct_order} 
                   onNextQuestion={callAPI} 
                   refreshSidebar={() => sidebarRef.current?.refreshTrophies()}
+                  showHint={handleShowHint}
+                  showCorrect={handleShowCorrect}
                 />
               )}
             </div>
@@ -115,9 +126,14 @@ function App() {
         </div>
       </DndProvider>
       <Sidebar ref={sidebarRef}/>
+      {showHint && <Hint 
+                    onClose={handleHideHint} 
+                    hint_message={questionData.hint}
+                    />}
+      {showCorrect && <GoodJob onClose={handleHideCorrect} />}
     </>
 
   )
-}
+  }
 
 export default App

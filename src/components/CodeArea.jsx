@@ -27,7 +27,7 @@ function CodeArea({ cards, moveCard, onDropCard }) {
         }
         if(item.origin === "menu") {
           dropSound.currentTime = 0
-          dropSound.play().catch(() => {}) // ignore autoplay blocking errors
+          dropSound.play().catch(() => {}) //this is for sound
           onDropCard(item, dropIndex)
         } else if(item.origin === "codeArea") {
           const fromIndex = item.index

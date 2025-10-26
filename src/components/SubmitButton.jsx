@@ -5,7 +5,7 @@ import clickSoundFile from "../assets/sounds/clickSound.mp3";
 //return id question incorrect cards correct cards
 //Change codingProblem text to question
 //for cards we want an array with incorrect and correct cards randomized then add the text to seperate cards
-function SubmitButton({codeAreaCards, correctOrder, onNextQuestion, refreshSidebar}) {
+function SubmitButton({codeAreaCards, correctOrder, onNextQuestion, refreshSidebar, showHint, showCorrect}) {
 
     const onSubmit = async () => {
         const clickSound = new Audio(clickSoundFile);
@@ -30,13 +30,16 @@ function SubmitButton({codeAreaCards, correctOrder, onNextQuestion, refreshSideb
             } catch (err) {
                 console.error("Failed to add trophy:", err);
             }
-        alert("Correct! Loading next question...");
 
-        refreshSidebar();
-        onNextQuestion(); 
+            showCorrect();
+            setTimeout(() => {
+                refreshSidebar();
+                onNextQuestion(); 
+            }, 2000)
+
 
         } else {
-        alert("Incorrect order. Try again.");
+            showHint();
         }
     };
 

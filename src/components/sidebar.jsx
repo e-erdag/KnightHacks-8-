@@ -127,8 +127,6 @@ const Sidebar = forwardRef((props, ref) => {
             <img className="trophyImage" src={trophyImage} alt="trophy" />
           </div>
         </div>
-
-        <button onClick={increaseHeight}>Increase Height</button>
       </div>
     </>
   );

@@ -8,7 +8,7 @@ function CodeCard({ card, origin, index, moveCard }) {
 
   const handleClick = () => {
     clickSound.currentTime = 0 // restart sound if clicked repeatedly
-    clickSound.play().catch(() => {}) // handle play() promise quietly
+    clickSound.play().catch(() => {}) 
   }
 
   const [, drop] = useDrop({

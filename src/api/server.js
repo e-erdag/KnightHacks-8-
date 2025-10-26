@@ -14,7 +14,6 @@ app.use(express.json());
 
 //initializing gemini model
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-//const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash-lite-001' }); 
 const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash-preview-09-2025' }); 
 
 //file for trophies
@@ -23,7 +22,7 @@ let file_path = "src/api/trophies.txt";
 
 let trophy_number = 0
 
-//checking if file alreaddy exists and if not creating it
+//checking if file already exists and if not creating it
 try{
   await fs.access(file_path);
   console.log('Save file exists');
@@ -37,20 +36,17 @@ const line = await fs.readFile(file_path, 'utf-8');
 trophy_number = parseInt(line, 10);
 
 
-//req is the requestion object (getting stuff from client),  res is response object (sending stuff back to client)
+//req is the requesting object (getting stuff from client),  res is response object (sending stuff back to client)
 app.post('/gen_question', async (req, res) => {
 
 console.log("Trophy amount being passed to generate prompt: ", trophy_number);
   let prompt_to_send = getGeminiPrompt(trophy_number);
-  // const { prompt } = req.body;
 
   try{
     
     const result = await model.generateContent(prompt_to_send); // .generateContent sends prompt to Gemini and waits for response (result contains reponse) 
     const aiResponse = await result.response.text(); //.text() extracts the generated text from the response
     res.json({response: aiResponse});
-
-    //getQuestionFromResponse(aiResponse);
 
 
   } catch (error)  {
