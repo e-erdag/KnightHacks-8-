@@ -4,6 +4,13 @@ import React from "react"
 function CodeCard({ card, origin, index, moveCard }) {
   const ref = React.useRef(null)
 
+  const clickSound = React.useMemo(() => new Audio("./assets/sounds/card.mp3"), [])
+
+  const handleClick = () => {
+    clickSound.currentTime = 0 // restart sound if clicked repeatedly
+    clickSound.play().catch(() => {}) // handle play() promise quietly
+  }
+
   const [, drop] = useDrop({
     accept: "CARD",
     hover(item, monitor) {
@@ -44,6 +51,7 @@ function CodeCard({ card, origin, index, moveCard }) {
   return (
     <div
       ref={ref}
+      onClick={handleClick}
       className="code-card"
       style={{ opacity: isDragging ? 0.5 : 1 }}
     >

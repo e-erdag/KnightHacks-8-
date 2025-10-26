@@ -9,6 +9,7 @@ import CodingProblem from './components/CodingProblem'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import {getQuestionFromResponse} from './api/supportFunctions.js'
+import Hint from './components/hint.jsx'
 import React from 'react'
 function App() {
 

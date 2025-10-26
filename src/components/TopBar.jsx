@@ -7,6 +7,7 @@ function TopBar() {
                     <span className="white-text">Code</span>
                     <span className="gold-text">Cards</span>
                 </h2>
+                
             </div>
         </div>
     )

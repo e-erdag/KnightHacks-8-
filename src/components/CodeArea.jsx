@@ -1,9 +1,12 @@
 import { useDrop } from "react-dnd"
 import CodeCard from "./CodeCard"
-import React, {useRef} from "react"
+import React, {useRef, useMemo} from "react"
+import Card from "../assets/sounds/card.mp3"
 
 function CodeArea({ cards, moveCard, onDropCard }) {
     const containerRef = useRef(null)
+
+    const dropSound = useMemo(() => new Audio(Card), [])
 
     const [, drop] = useDrop(() => ({
     accept: "CARD",
@@ -23,6 +26,8 @@ function CodeArea({ cards, moveCard, onDropCard }) {
           }
         }
         if(item.origin === "menu") {
+          dropSound.currentTime = 0
+          dropSound.play().catch(() => {}) // ignore autoplay blocking errors
           onDropCard(item, dropIndex)
         } else if(item.origin === "codeArea") {
           const fromIndex = item.index

@@ -7,14 +7,14 @@ function Hint() {
 
     return (
         <>
-            <div className="container">
-                <div className="box">
-                    <h4 className='message'>{message}</h4>
-                    <img className="blueKingImage" src={blueKing} alt="Blue King" />
-                </div>
+          <div className="hint-overlay" onClick={onClose}>
+            <div className="hint-box" onClick={(e) => e.stopPropagation()}>
+              <h4 className="message">{message}</h4>
+              <img className="blueKingImage" src={blueKing} alt="Blue King" />
             </div>
+          </div>
         </>
-    );
-}
+      );
+    }
 
 export default Hint;
