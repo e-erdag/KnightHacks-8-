@@ -22,7 +22,14 @@ function CodeArea({ cards, moveCard, onDropCard }) {
             break;
           }
         }
-        onDropCard(item, dropIndex)
+        if(item.origin === "menu") {
+          onDropCard(item, dropIndex)
+        } else if(item.origin === "codeArea") {
+          const fromIndex = item.index
+          if (fromIndex !== dropIndex) {
+            moveCard(fromIndex, dropIndex)
+          }
+        }
       }
     }
   }))

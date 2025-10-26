@@ -107,7 +107,7 @@ body {
     border-radius: 10px;
     background-color: #13538b;
     width: 80.5%;
-    height: 100%;
+    height: 60vh;
     border: 2px solid #0c3457;
     display: flex;
     flex-direction: column;

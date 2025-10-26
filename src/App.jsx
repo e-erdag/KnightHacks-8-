@@ -60,10 +60,12 @@ function App() {
   }, [codeAreaCards]);
 
   const moveCard = (fromIndex, toIndex) => {
-    const updated = [...codeAreaCardsRef.current]
-    const [moved] = updated.splice(fromIndex, 1)
-    updated.splice(toIndex, 0, moved)
-    setCodeAreaCards(updated)
+    setCodeAreaCards(prev => {
+      const updated = [...prev];
+      const [moved] = updated.splice(fromIndex, 1);
+      updated.splice(toIndex, 0, moved);
+      return updated;
+    });
   }
 
   const handleDropToCodeArea = (card, dropIndex) => {
