@@ -16,6 +16,8 @@ function App() {
   const [menuCards, setMenuCards] = useState([])
   const [error, setError] = useState(null);
   const [codeAreaCards, setCodeAreaCards] = useState([])
+  const [sidebarRefresh, setSidebarRefresh] = useState(0);
+
 
   const didFetchRef = useRef(false);
   const callAPI = async() => {
@@ -102,14 +104,14 @@ function App() {
                   codeAreaCards={codeAreaCards} 
                   correctOrder={questionData.correct_order} 
                   onNextQuestion={callAPI} 
-            
+                  refreshSidebar={() => setSidebarRefresh(prev => prev + 1)}
                 />
               )}
             </div>
           </div>
         </div>
       </DndProvider>
-      <Sidebar />
+      <Sidebar key={sidebarRefresh}/>
     </>
 
   )
