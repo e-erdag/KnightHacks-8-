@@ -1,8 +1,9 @@
-function CodingProblem() {
+function CodingProblem({question}) {
+    if (!question) return null;
     return (
         <div className="code-problem">
             <div className="code-problem-content">
-                <p>Sort this array and then get rid of all even indexes</p>
+                <p>{question.question}</p>
             </div>
         </div>
     )
