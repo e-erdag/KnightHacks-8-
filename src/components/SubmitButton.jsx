@@ -17,6 +17,19 @@ function SubmitButton({codeAreaCards, correctOrder, onNextQuestion}) {
         userIds.every((id, index) => id === correctOrder[index]);
 
         if (isCorrect) {
+
+            // try {
+            //     const response = await fetch("http://localhost:3000/add_trophies", {
+            //         method: "POST",
+            //         headers: { "Content-Type": "application/json" },
+            //         body: JSON.stringify({ amount: 1 }) // you can customize amount
+            //     });
+
+            //     const result = await response.json();
+            //     console.log("Trophy added:", result);
+            // } catch (err) {
+            //     console.error("Failed to add trophy:", err);
+            // }
         alert("Correct! Loading next question...");
         onNextQuestion(); 
         } else {
