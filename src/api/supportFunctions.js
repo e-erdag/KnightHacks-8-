@@ -15,11 +15,11 @@ export async function readSavedTrophies(file_path){
 }
 
 
-export async function addAndSaveTrophieAmount(file_path, trophie_amount){
+export async function addAndSaveTrophieAmount(file_path, trophy_amount){
     try{
-        trophie_amount = Number(trophie_amount);     
-        trophie_amount += await readSavedTrophies(file_path);
-        await fs.writeFile(file_path, trophie_amount.toString(), 'utf-8');
+        trophy_amount = Number(trophy_amount);     
+        trophy_amount += await readSavedTrophies(file_path);
+        await fs.writeFile(file_path, trophy_amount.toString(), 'utf-8');
         console.log("Trophie amount saved successfully");
     } catch (error) {
         console.error("Error in writing trophie amount to file", error);
@@ -31,14 +31,14 @@ export function getQuestionFromResponse(unprocessed_json){
     try{
         const cleaned_json = unprocessed_json.replace(/```json|```/g, '').trim(); //ragex to remove leading characters from gemini response
         const data = JSON.parse(cleaned_json);
-        const { id, question, correct_cards, incorrect_cards } = data; 
+        const { id, question, card_array, correct_order } = data; 
         
         console.log("Question ID:", id);
         console.log("Question:", question);
-        console.log("Correct cards:", correct_cards);
-        console.log("Incorrect cards:", incorrect_cards);
+        console.log("Card Array:", card_array);
+        console.log("Correct Order:", correct_order);
 
-        return id, question, correct_cards, incorrect_cards;
+        return id, question, card_array, correct_order;
     } catch (error) {
         console.error("Error in getting from AI Response JSON", error);
     }

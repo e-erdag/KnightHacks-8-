@@ -3,6 +3,7 @@ import express, { response } from 'express';
 import cors from 'cors';
 import { GoogleGenerativeAI } from "@google/generative-ai"; 
 import {addAndSaveTrophieAmount, readSavedTrophies, getQuestionFromResponse} from './supportFunctions.js';
+import {getGeminiPrompt} from './geminiPrompt.js'
 import { promises as fs } from 'fs';
 
 const app = express();
@@ -18,6 +19,9 @@ const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash-lite-001' });
 //file for trophies
 let file_path = "src/api/trophies.txt";
 
+
+let trophy_number = 0;
+
 //checking if file alreaddy exists and if not creating it
 try{
   await fs.access(file_path);
@@ -32,10 +36,11 @@ try{
 //req is the requestion object (getting stuff from client),  res is response object (sending stuff back to client)
 app.post('/gen_question', async (req, res) => {
 
-  const { prompt } = req.body;
+  prompt_to_send = getGeminiPrompt(trophy_number);
+  // const { prompt } = req.body;
 
   try{
-    const result = await model.generateContent(prompt); // .generateContent sends prompt to Gemini and waits for response (result contains reponse) 
+    const result = await model.generateContent(prompt_to_send); // .generateContent sends prompt to Gemini and waits for response (result contains reponse) 
     const aiResponse = await result.response.text(); //.text() extracts the generated text from the response
     res.json({response: aiResponse});
 
@@ -57,6 +62,7 @@ app.post('/add_trophies', async (req, res) => {
   try{
     await addAndSaveTrophieAmount(file_path, trophies_to_add);
     res.json({response: "successfully added new trophies"});
+    trophy_number += trophies_to_add;
 
   } catch (error) {
     console.error('trophie addition error: ', error);
@@ -71,6 +77,7 @@ app.post('/read_trophies', async (req, res) => {
   try{
     const trophies = await readSavedTrophies(file_path);
     res.json({response: trophies});
+    trophy_number = trophies;
 
   } catch (error) {
     console.error('error when fetching saved trophies: ', error);
